@@ -1,5 +1,4 @@
-// Browser bundle of nunjucks 1.0.5
-
+// Browser bundle of nunjucks 1.0.5 \n
 (function() {
 var modules = {};
 (function() {
@@ -43,7 +42,7 @@ function extend(cls, name, props) {
 
     prototype.typename = name;
 
-    var new_cls = function() { 
+    var new_cls = function() {
         if(prototype.init) {
             prototype.init.apply(this, arguments);
         }
@@ -258,7 +257,7 @@ exports.map = function(obj, func) {
 
 exports.asyncIter = function(arr, iter, cb) {
     var i = -1;
-    
+
     function next() {
         i++;
 
@@ -2542,7 +2541,7 @@ function walk(ast, func, depthFirst) {
         var contentArgs = mapCOW(ast.contentArgs, function(node) {
             return walk(node, func, depthFirst);
         });
-        
+
         if(args !== ast.args || contentArgs !== ast.contentArgs) {
             ast = new nodes[ast.typename](ast.extName,
                                           ast.prop,
@@ -3419,7 +3418,7 @@ var Compiler = Object.extend({
             var v = this.tmpid();
             frame.set(node.name.value, v);
 
-            this.emitLine('for(var ' + i + '=0; ' + i + ' < ' + arr + '.length; ' + 
+            this.emitLine('for(var ' + i + '=0; ' + i + ' < ' + arr + '.length; ' +
                           i + '++) {');
             this.emitLine('var ' + v + ' = ' + arr + '[' + i + '];');
             this.emitLine('frame.set("' + node.name.value + '", ' + v + ');');
@@ -3432,7 +3431,7 @@ var Compiler = Object.extend({
 
             this.emitLine('}');
         }
-        
+
         this.emitLine('}');
         this.emitLine('frame = frame.pop();');
     },
@@ -3479,7 +3478,7 @@ var Compiler = Object.extend({
         }
 
         this.emitLoopBindings(node, loopUses, arr, i, len);
-        
+
         this.withScopedSyntax(function() {
             var buf;
             if(parallel) {
@@ -4531,6 +4530,10 @@ var Environment = Obj.extend({
 
     getExtension: function(name) {
         return this.extensions[name];
+    },
+
+    addGlobal: function(name, func) {
+        globals[name] = func;
     },
 
     addFilter: function(name, func, async) {

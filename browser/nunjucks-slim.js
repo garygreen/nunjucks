@@ -1,5 +1,4 @@
-// Browser bundle of nunjucks 1.0.5 (slim, only works with precompiled templates)
-
+// Browser bundle of nunjucks 1.0.5 (slim, only works with precompiled templates)\n
 (function() {
 var modules = {};
 (function() {
@@ -43,7 +42,7 @@ function extend(cls, name, props) {
 
     prototype.typename = name;
 
-    var new_cls = function() { 
+    var new_cls = function() {
         if(prototype.init) {
             prototype.init.apply(this, arguments);
         }
@@ -258,7 +257,7 @@ exports.map = function(obj, func) {
 
 exports.asyncIter = function(arr, iter, cb) {
     var i = -1;
-    
+
     function next() {
         i++;
 
@@ -1352,6 +1351,10 @@ var Environment = Obj.extend({
 
     getExtension: function(name) {
         return this.extensions[name];
+    },
+
+    addGlobal: function(name, func) {
+        globals[name] = func;
     },
 
     addFilter: function(name, func, async) {
